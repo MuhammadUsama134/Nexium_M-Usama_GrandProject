@@ -1,0 +1,256 @@
+{
+  "workflows": [
+    {
+      "name": "AI Content Generation",
+      "id": "ai-content-generation",
+      "description": "Processes AI content generation requests",
+      "nodes": [
+        {
+          "parameters": {},
+          "name": "Webhook",
+          "type": "n8n-nodes-base.webhook",
+          "typeVersion": 1,
+          "position": [240, 300],
+          "webhookId": "ai-content-generation"
+        },
+        {
+          "parameters": {
+            "httpMethod": "POST",
+            "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "headers": {
+              "parameters": [
+                {
+                  "name": "Content-Type",
+                  "value": "application/json"
+                }
+              ]
+            },
+            "body": {
+              "parameters": [
+                {
+                  "name": "contents",
+                  "value": "=[{\"parts\":[{\"text\":\"{{$json.prompt}}\"}]}]"
+                }
+              ]
+            }
+          },
+          "name": "Gemini API",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 3,
+          "position": [460, 300]
+        },
+        {
+          "parameters": {
+            "jsCode": "const response = $input.first();\nconst content = response.json.candidates[0].content.parts[0].text;\n\nreturn {\n  content: content,\n  timestamp: new Date().toISOString(),\n  success: true\n};"
+          },
+          "name": "Process Response",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [680, 300]
+        },
+        {
+          "parameters": {
+            "respondWith": "json",
+            "responseBody": "={{ $json }}"
+          },
+          "name": "Respond to Webhook",
+          "type": "n8n-nodes-base.respondToWebhook",
+          "typeVersion": 1,
+          "position": [900, 300]
+        }
+      ],
+      "connections": {
+        "Webhook": {
+          "main": [
+            [
+              {
+                "node": "Gemini API",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Gemini API": {
+          "main": [
+            [
+              {
+                "node": "Process Response",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Process Response": {
+          "main": [
+            [
+              {
+                "node": "Respond to Webhook",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "name": "Notification Sender",
+      "id": "notification-sender",
+      "description": "Sends notifications via email and other channels",
+      "nodes": [
+        {
+          "parameters": {},
+          "name": "Webhook",
+          "type": "n8n-nodes-base.webhook",
+          "typeVersion": 1,
+          "position": [240, 300],
+          "webhookId": "notification-sender"
+        },
+        {
+          "parameters": {
+            "conditions": {
+              "string": [
+                {
+                  "value1": "={{$json.type}}",
+                  "value2": "email"
+                }
+              ]
+            }
+          },
+          "name": "Is Email Notification",
+          "type": "n8n-nodes-base.if",
+          "typeVersion": 1,
+          "position": [460, 300]
+        },
+        {
+          "parameters": {
+            "fromEmail": "noreply@pitchwriter.ai",
+            "toEmail": "={{$json.data.email}}",
+            "subject": "={{$json.data.subject}}",
+            "text": "={{$json.data.message}}"
+          },
+          "name": "Send Email",
+          "type": "n8n-nodes-base.emailSend",
+          "typeVersion": 2,
+          "position": [680, 200]
+        },
+        {
+          "parameters": {
+            "respondWith": "json",
+            "responseBody": "{\"success\": true, \"message\": \"Notification sent\"}"
+          },
+          "name": "Success Response",
+          "type": "n8n-nodes-base.respondToWebhook",
+          "typeVersion": 1,
+          "position": [900, 300]
+        }
+      ],
+      "connections": {
+        "Webhook": {
+          "main": [
+            [
+              {
+                "node": "Is Email Notification",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Is Email Notification": {
+          "main": [
+            [
+              {
+                "node": "Send Email",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Success Response",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Send Email": {
+          "main": [
+            [
+              {
+                "node": "Success Response",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "name": "Analytics Tracker",
+      "id": "analytics-tracker",
+      "description": "Tracks user analytics and events",
+      "nodes": [
+        {
+          "parameters": {},
+          "name": "Webhook",
+          "type": "n8n-nodes-base.webhook",
+          "typeVersion": 1,
+          "position": [240, 300],
+          "webhookId": "analytics-tracker"
+        },
+        {
+          "parameters": {
+            "operation": "insertOne",
+            "collection": "analytics_events",
+            "fields": "event,data,timestamp,user_id"
+          },
+          "name": "MongoDB Insert",
+          "type": "n8n-nodes-base.mongoDb",
+          "typeVersion": 1,
+          "position": [460, 300]
+        },
+        {
+          "parameters": {
+            "respondWith": "json",
+            "responseBody": "{\"success\": true, \"message\": \"Analytics tracked\"}"
+          },
+          "name": "Success Response",
+          "type": "n8n-nodes-base.respondToWebhook",
+          "typeVersion": 1,
+          "position": [680, 300]
+        }
+      ],
+      "connections": {
+        "Webhook": {
+          "main": [
+            [
+              {
+                "node": "MongoDB Insert",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "MongoDB Insert": {
+          "main": [
+            [
+              {
+                "node": "Success Response",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}
