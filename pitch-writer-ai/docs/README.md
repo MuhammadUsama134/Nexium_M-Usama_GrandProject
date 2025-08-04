@@ -85,26 +85,22 @@ Before you begin, ensure you have the following installed:
 
 ### 1. Clone the Repository
 
-\`\`\`bash
 git clone https://github.com/yourusername/pitch-writer-ai.git
+
 cd pitch-writer-ai
-\`\`\`
 
 ### 2. Install Dependencies
 
-\`\`\`bash
 # Using npm
 npm install
 
 # Using yarn
 yarn install
-\`\`\`
 
 ### 3. Set Up Environment Variables
 
 Create a `.env.local` file in the root directory:
 
-\`\`\`env
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -121,7 +117,6 @@ N8N_API_KEY=your_n8n_api_key
 
 # Application Configuration
 NEXT_PUBLIC_APP_URL=http://localhost:3000
-\`\`\`
 
 ### 4. Set Up Supabase Database
 
@@ -149,7 +144,6 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 
 ### 7. Set Up n8n (Optional)
 
-\`\`\`bash
 # Install n8n globally
 npm install -g n8n
 
@@ -158,7 +152,6 @@ n8n start
 
 # Or using Docker
 docker run -it --rm --name n8n -p 5678:5678 n8nio/n8n
-\`\`\`
 
 1. Open http://localhost:5678
 2. Import workflows from `scripts/n8n-workflows.json`
@@ -169,45 +162,36 @@ docker run -it --rm --name n8n -p 5678:5678 n8nio/n8n
 
 ### 8. Initialize Shadcn/ui
 
-\`\`\`bash
 # Initialize shadcn/ui
 npx shadcn@latest init
 
 # Add required components
 npx shadcn@latest add button card input label textarea select tabs progress badge avatar dropdown-menu toast separator accordion alert-dialog checkbox dialog tooltip
-\`\`\`
 
 ## 🏃‍♂️ Running the Application
 
 ### Development Mode
 
-\`\`\`bash
 npm run dev
 # or
 yarn dev
-\`\`\`
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Production Build
-
-\`\`\`bash
 # Build the application
 npm run build
 
 # Start production server
 npm start
-\`\`\`
 
 ### Running with Docker
 
-\`\`\`bash
 # Build Docker image
 docker build -t pitch-writer-ai .
 
 # Run container
 docker run -p 3000:3000 pitch-writer-ai
-\`\`\`
 
 ## 📖 Usage Guide
 
@@ -321,7 +305,6 @@ Customize AI prompts by modifying:
 
 ### Running Tests
 
-\`\`\`bash
 # Run all tests
 npm test
 
@@ -330,34 +313,6 @@ npm run test:watch
 
 # Run tests with coverage
 npm run test:coverage
-\`\`\`
-
-### Test Structure
-
-\`\`\`
-tests/
-├── __mocks__/          # Mock files
-├── components/         # Component tests
-├── hooks/             # Hook tests
-├── pages/             # Page tests
-├── utils/             # Utility tests
-└── setup.ts           # Test setup
-\`\`\`
-
-### Writing Tests
-
-\`\`\`typescript
-// Example component test
-import { render, screen } from '@testing-library/react'
-import { PitchBuilder } from '@/components/pitch-builder'
-
-describe('PitchBuilder', () => {
-  it('renders the pitch builder form', () => {
-    render(<PitchBuilder />)
-    expect(screen.getByText('Create New Pitch')).toBeInTheDocument()
-  })
-})
-\`\`\`
 
 ## 🚀 Deployment
 
@@ -367,15 +322,12 @@ describe('PitchBuilder', () => {
 2. **Environment Variables**: Add all required environment variables
 3. **Deploy**: Vercel will automatically build and deploy
 
-\`\`\`bash
 # Using Vercel CLI
 npm install -g vercel
 vercel --prod
-\`\`\`
 
 ### Docker Deployment
-
-\`\`\`dockerfile
+(In a dockerfile:)
 FROM node:18-alpine
 
 WORKDIR /app
@@ -387,7 +339,6 @@ RUN npm run build
 
 EXPOSE 3000
 CMD ["npm", "start"]
-\`\`\`
 
 ### Environment Setup
 
@@ -405,14 +356,11 @@ We welcome contributions from the community! Here's how you can help:
 ### Getting Started
 
 1. **Fork the Repository**
-   \`\`\`bash
+
    git fork https://github.com/yourusername/pitch-writer-ai.git
-   \`\`\`
 
 2. **Create a Feature Branch**
-   \`\`\`bash
    git checkout -b feature/amazing-feature
-   \`\`\`
 
 3. **Make Your Changes**
    - Follow the existing code style
@@ -420,14 +368,10 @@ We welcome contributions from the community! Here's how you can help:
    - Update documentation as needed
 
 4. **Commit Your Changes**
-   \`\`\`bash
    git commit -m "Add amazing feature"
-   \`\`\`
 
 5. **Push to Your Branch**
-   \`\`\`bash
    git push origin feature/amazing-feature
-   \`\`\`
 
 6. **Open a Pull Request**
    - Provide a clear description of changes
@@ -441,21 +385,3 @@ We welcome contributions from the community! Here's how you can help:
 - Follow ESLint and Prettier configurations
 - Write meaningful commit messages
 - Add JSDoc comments for functions
-
-#### Component Guidelines
-\`\`\`typescript
-// Example component structure
-interface ComponentProps {
-  title: string
-  onAction: () => void
-}
-
-export function Component({ title, onAction }: ComponentProps) {
-  return (
-    <div className="component-wrapper">
-      <h2>{title}</h2>
-      <button onClick={onAction}>Action</button>
-    </div>
-  )
-}
-\`\`\`
