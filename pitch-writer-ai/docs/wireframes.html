@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Writer AI - Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .wireframe-section {
+            background: white;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .wireframe-header {
+            background: #2563eb;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .wireframe-content {
+            padding: 30px;
+        }
+        
+        .wireframe {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #fafafa;
+            position: relative;
+        }
+        
+        .screen-title {
+            background: #1f2937;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            position: absolute;
+            top: -12px;
+            left: 20px;
+        }
+        
+        .wireframe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .element {
+            background: #e5e7eb;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+            border: 1px dashed #9ca3af;
+        }
+        
+        .element.header {
+            background: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        
+        .element.button {
+            background: #2563eb;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .element.input {
+            background: white;
+            border: 2px solid #d1d5db;
+            text-align: left;
+            color: #9ca3af;
+        }
+        
+        .element.card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .element.sidebar {
+            background: #f3f4f6;
+            border-right: 2px solid #e5e7eb;
+            min-height: 400px;
+        }
+        
+        .element.content {
+            background: white;
+            min-height: 400px;
+            padding: 20px;
+        }
+        
+        .flow-arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #2563eb;
+            margin: 20px 0;
+        }
+        
+        .annotation {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 11px;
+            color: #92400e;
+            margin: 8px 0;
+        }
+        
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            min-height: 500px;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+        
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        
+        .step.active {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .step.completed {
+            background: #10b981;
+            color: white;
+        }
+        
+        .mobile-wireframe {
+            max-width: 375px;
+            margin: 0 auto;
+            border: 3px solid #374151;
+            border-radius: 25px;
+            padding: 20px;
+            background: white;
+        }
+        
+        .desktop-wireframe {
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+            min-height: 600px;
+        }
+        
+        h1 {
+            color: #1f2937;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: #374151;
+            margin: 30px 0 15px 0;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #4b5563;
+            margin: 20px 0 10px 0;
+            font-size: 1.3rem;
+        }
+        
+        .toc {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            padding: 5px 0;
+        }
+        
+        .toc a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header style="text-align: center; margin-bottom: 40px;">
+            <h1>Pitch Writer AI</h1>
+            <p style="font-size: 1.2rem; color: #6b7280;">Wireframes & User Interface Design</p>
+        </header>
+
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#landing">1. Landing Page</a></li>
+                <li><a href="#auth">2. Authentication</a></li>
+                <li><a href="#dashboard">3. Dashboard</a></li>
+                <li><a href="#pitch-creation">4. Pitch Creation Workflow</a></li>
+                <li><a href="#ai-assistant">5. AI Assistant Features</a></li>
+                <li><a href="#templates">6. Templates Library</a></li>
+                <li><a href="#export">7. Export & Sharing</a></li>
+                <li><a href="#mobile">8. Mobile Experience</a></li>
+            </ul>
+        </div>
+
+        <!-- Landing Page -->
+        <div class="wireframe-section" id="landing">
+            <div class="wireframe-header">
+                <h2>1. Landing Page</h2>
+                <p>First impression and value proposition communication</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Desktop - Landing Page</div>
+                    
+                    <!-- Header -->
+                    <div class="element header">
+                        Navigation: Logo | Features | Templates | Pricing | About | Sign In | Get Started
+                    </div>
+                    
+                    <!-- Hero Section -->
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <div class="element" style="background: #dbeafe; padding: 20px; margin: 20px 0;">
+                            <strong>Hero Badge:</strong> "AI-Powered Pitch Creation"
+                        </div>
+                        <div class="element" style="font-size: 16px; padding: 20px;">
+                            <strong>Main Headline:</strong><br>
+                            "Turn Your Ideas Into Compelling Stories"
+                        </div>
+                        <div class="element" style="padding: 15px;">
+                            Subheading: Create professional, persuasive pitches in minutes with AI assistance
+                        </div>
+                        <div style="display: flex; gap: 15px; justify-content: center; margin: 20px 0;">
+                            <div class="element button">Start Creating Free</div>
+                            <div class="element" style="background: white; border: 2px solid #2563eb;">Watch Demo</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 40px 0;">
+                        <div class="element card">10,000+ Active Users</div>
+                        <div class="element card">50,000+ Pitches Created</div>
+                        <div class="element card">85% Success Rate</div>
+                    </div>
+                    
+                    <div class="annotation">
+                        Key Elements: Clear value proposition, social proof, prominent CTAs, visual hierarchy
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div class="desktop-wireframe" style="margin-top: 30px;">
+                    <div class="screen-title">Features Section</div>
+                    
+                    <div style="text-align: center; margin: 40px 0;">
+                        <div class="element" style="background: #dbeafe; display: inline-block;">
+                            "Powerful Features" Badge
+                        </div>
+                        <div class="element" style="font-size: 16px; padding: 20px;">
+                            "Everything You Need to Create Winning Pitches"
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                        <div class="element card">
+                            <div style="margin-bottom: 10px;">🧠 AI-Powered Writing</div>
+                            Generate compelling content with advanced AI
+                        </div>
+                        <div class="element card">
+                            <div style="margin-bottom: 10px;">📄 Professional Templates</div>
+                            Expert-crafted templates for every use case
+                        </div>
+                        <div class="element card">
+                            <div style="margin-bottom: 10px;">🎨 Tone & Style Control</div>
+                            Adjust content for different audiences
+                        </div>
+                        <div class="element card">
+                            <div style="margin-bottom: 10px;">🎯 Audience Targeting</div>
+                            Customize for VCs, customers, stakeholders
+                        </div>
+                        <div class="element card">
+                            <div style="margin-bottom: 10px;">📤 Export Options</div>
+                            PDF, PowerPoint, secure sharing links
+                        </div>
+                        <div class="element card">
+                            <div style="margin-bottom: 10px;">📊 Analytics & Insights</div>
+                            Track performance and success rates
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Authentication -->
+        <div class="wireframe-section" id="auth">
+            <div class="wireframe-header">
+                <h2>2. Authentication</h2>
+                <p>Magic link email authentication system</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe-grid">
+                    <div class="desktop-wireframe">
+                        <div class="screen-title">Sign In Page</div>
+                        
+                        <div style="max-width: 400px; margin: 60px auto; text-align: center;">
+                            <div class="element" style="background: #dbeafe; margin: 20px 0;">
+                                ✨ Pitch Writer AI Logo
+                            </div>
+                            
+                            <div class="element" style="font-size: 16px; margin: 20px 0;">
+                                Welcome to Pitch Writer AI
+                            </div>
+                            
+                            <div class="element" style="margin: 20px 0;">
+                                Sign in to start creating compelling pitches
+                            </div>
+                            
+                            <div class="element card" style="padding: 30px; text-align: left;">
+                                <div style="margin-bottom: 15px; font-weight: 600;">Sign In</div>
+                                <div style="margin-bottom: 20px;">Enter your email to receive a magic link</div>
+                                
+                                <div class="element input" style="margin: 10px 0;">
+                                    Email Address
+                                </div>
+                                
+                                <div class="element button" style="margin: 20px 0;">
+                                    📧 Send Magic Link
+                                </div>
+                            </div>
+                            
+                            <div class="element" style="font-size: 11px; color: #6b7280;">
+                                By signing in, you agree to our Terms of Service and Privacy Policy
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">
+                            Magic Link Flow: Email → Click Link → Authenticated → Redirect to Dashboard
+                        </div>
+                    </div>
+                    
+                    <div class="desktop-wireframe">
+                        <div class="screen-title">Magic Link Sent</div>
+                        
+                        <div style="max-width: 400px; margin: 60px auto; text-align: center;">
+                            <div class="element" style="background: #dcfce7; color: #166534; margin: 20px 0;">
+                                ✅ Magic Link Sent!
+                            </div>
+                            
+                            <div class="element" style="margin: 20px 0;">
+                                Check your email for the login link
+                            </div>
+                            
+                            <div class="element" style="background: #f3f4f6; padding: 20px; margin: 20px 0;">
+                                📧 We sent a secure login link to:<br>
+                                <strong>user@example.com</strong>
+                            </div>
+                            
+                            <div class="element" style="font-size: 12px; margin: 20px 0;">
+                                Didn't receive the email? Check your spam folder or try again
+                            </div>
+                            
+                            <div class="element button" style="background: #6b7280;">
+                                Resend Link
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="wireframe-section" id="dashboard">
+            <div class="wireframe-header">
+                <h2>3. Dashboard</h2>
+                <p>User's main workspace and pitch management</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Dashboard - Main View</div>
+                    
+                    <!-- Header -->
+                    <div class="element header">
+                        Logo | Dashboard | My Pitches | Templates | AI Assistant | [Profile] | Theme Toggle
+                    </div>
+                    
+                    <!-- Welcome Section -->
+                    <div style="padding: 30px 20px;">
+                        <div class="element" style="font-size: 18px; text-align: left; background: white;">
+                            Welcome back, John! 👋<br>
+                            <span style="font-size: 14px; color: #6b7280;">Ready to create your next compelling pitch?</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Cards -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px;">
+                        <div class="element card">
+                            📄 Total Pitches<br><strong style="font-size: 24px;">12</strong><br>
+                            <span style="color: #10b981;">+2 from last month</span>
+                        </div>
+                        <div class="element card">
+                            🕒 Recent Activity<br><strong style="font-size: 24px;">3</strong><br>
+                            <span style="color: #6b7280;">This week</span>
+                        </div>
+                        <div class="element card">
+                            📈 Success Rate<br><strong style="font-size: 24px;">78%</strong><br>
+                            <span style="color: #10b981;">Based on feedback</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div style="margin: 30px 20px;">
+                        <div class="element" style="text-align: left; background: white; font-weight: 600; margin-bottom: 15px;">
+                            Quick Actions
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                            <div class="element card">
+                                ➕ New Pitch<br>Start from scratch
+                            </div>
+                            <div class="element card">
+                                📄 Use Template<br>Choose from library
+                            </div>
+                            <div class="element card">
+                                ✨ AI Assistant<br>Get AI help
+                            </div>
+                            <div class="element card">
+                                📊 Analytics<br>View insights
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Pitches -->
+                    <div style="margin: 30px 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div class="element" style="text-align: left; background: white; font-weight: 600;">
+                                Recent Pitches
+                            </div>
+                            <div class="element" style="background: white; border: 1px solid #d1d5db;">
+                                View All
+                            </div>
+                        </div>
+                        
+                        <div class="element card" style="text-align: left; padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <strong>AI-Powered Marketing Platform</strong>
+                                    <span style="background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-left: 10px;">Completed</span><br>
+                                    <span style="color: #6b7280; font-size: 12px;">Startup pitch for Series A funding</span><br>
+                                    <span style="color: #9ca3af; font-size: 11px;">Updated 2 days ago</span>
+                                </div>
+                                <div style="display: flex; gap: 5px;">
+                                    <div class="element" style="padding: 5px; background: #f3f4f6;">✏️</div>
+                                    <div class="element" style="padding: 5px; background: #f3f4f6;">🔗</div>
+                                    <div class="element" style="padding: 5px; background: #f3f4f6;">🗑️</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="annotation">
+                        Dashboard provides overview, quick access to key features, and recent activity
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pitch Creation Workflow -->
+        <div class="wireframe-section" id="pitch-creation">
+            <div class="wireframe-header">
+                <h2>4. Pitch Creation Workflow</h2>
+                <p>Step-by-step guided pitch builder</p>
+            </div>
+            <div class="wireframe-content">
+                <!-- Progress Header -->
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Pitch Builder - Progress Header</div>
+                    
+                    <div class="element header">
+                        Logo | Dashboard | [Save Draft] | [Preview] | [Profile]
+                    </div>
+                    
+                    <div class="element card" style="margin: 20px; padding: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div>
+                                <strong>Problem Statement</strong><br>
+                                <span style="color: #6b7280; font-size: 12px;">Define the problem you're solving</span>
+                            </div>
+                            <div style="background: #dbeafe; color: #1e40af; padding: 4px 12px; border-radius: 12px; font-size: 12px;">
+                                Step 2 of 8
+                            </div>
+                        </div>
+                        
+                        <!-- Progress Bar -->
+                        <div style="background: #e5e7eb; height: 8px; border-radius: 4px; margin: 15px 0;">
+                            <div style="background: #2563eb; height: 8px; border-radius: 4px; width: 25%;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step Indicators -->
+                    <div class="step-indicator">
+                        <div class="step completed">1</div>
+                        <div class="step active">2</div>
+                        <div class="step">3</div>
+                        <div class="step">4</div>
+                        <div class="step">5</div>
+                        <div class="step">6</div>
+                        <div class="step">7</div>
+                        <div class="step">8</div>
+                    </div>
+                </div>
+
+                <!-- Step Content Examples -->
+                <div class="wireframe-grid">
+                    <div class="desktop-wireframe">
+                        <div class="screen-title">Step 1 - Basic Information</div>
+                        
+                        <div style="padding: 30px;">
+                            <div class="element input" style="margin: 15px 0;">
+                                Pitch Title *<br>e.g., Revolutionary AI-Powered Marketing Platform
+                            </div>
+                            
+                            <div class="element input" style="margin: 15px 0; height: 80px;">
+                                Brief Description<br>A short summary of what your pitch is about...
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
+                                <div class="element input">
+                                    Pitch Type<br>▼ Startup Pitch
+                                </div>
+                                <div class="element input">
+                                    Target Audience<br>▼ Investors
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">
+                            Collects basic information to contextualize AI assistance
+                        </div>
+                    </div>
+                    
+                    <div class="desktop-wireframe">
+                        <div class="screen-title">Step 2 - Problem Statement</div>
+                        
+                        <div style="padding: 30px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div style="font-weight: 600;">Problem Statement *</div>
+                                <div class="element button" style="padding: 8px 16px; font-size: 12px;">
+                                    🪄 AI Generate
+                                </div>
+                            </div>
+                            
+                            <div class="element input" style="height: 150px; margin: 15px 0;">
+                                Describe the problem you're solving. What pain points does your audience face?
+                            </div>
+                            
+                            <div class="element" style="background: #fef3c7; color: #92400e; text-align: left; font-size: 12px;">
+                                💡 Tip: Focus on a problem that your audience can relate to and quantify the impact if possible.
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">
+                            AI Generate button provides contextual content suggestions
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Navigation Controls</div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
+                        <div class="element" style="background: white; border: 1px solid #d1d5db;">
+                            ← Previous
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px;">
+                            <div class="element" style="background: white; border: 1px solid #d1d5db;">
+                                💾 Save Draft
+                            </div>
+                            <div class="element button">
+                                Next →
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="annotation">
+                        Auto-save every 30 seconds, manual save option, step navigation
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Assistant Features -->
+        <div class="wireframe-section" id="ai-assistant">
+            <div class="wireframe-header">
+                <h2>5. AI Assistant Features</h2>
+                <p>AI-powered content generation and enhancement</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe-grid">
+                    <div class="desktop-wireframe">
+                        <div class="screen-title">AI Content Generation</div>
+                        
+                        <div style="padding: 20px;">
+                            <div class="element" style="background: #dbeafe; color: #1e40af; margin-bottom: 20px;">
+                                🤖 AI Assistant
+                            </div>
+                            
+                            <div class="element input" style="height: 100px; margin: 15px 0;">
+                                Prompt: "Generate a compelling problem statement for a startup pitch targeting investors about an AI-powered marketing platform"
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; margin: 15px 0;">
+                                <div class="element button">Generate Content</div>
+                                <div class="element" style="background: white; border: 1px solid #d1d5db;">
+                                    Use Template
+                                </div>
+                            </div>
+                            
+                            <div class="element card" style="text-align: left; padding: 20px; margin: 15px 0;">
+                                <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 10px;">
+                                    <strong>Generated Content:</strong>
+                                    <div style="display: flex; gap: 5px;">
+                                        <div class="element" style="padding: 4px 8px; font-size: 11px;">Copy</div>
+                                        <div class="element" style="padding: 4px 8px; font-size: 11px;">Regenerate</div>
+                                        <div class="element" style="padding: 4px 8px; font-size: 11px;">Use</div>
+                                    </div>
+                                </div>
+                                <div style="color: #374151; line-height: 1.5;">
+                                    "Marketing teams struggle with fragmented data across multiple platforms, leading to inefficient campaigns and missed opportunities. Current solutions require extensive manual work and technical expertise, resulting in 40% of marketing budgets being wasted on poorly targeted campaigns."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="desktop-wireframe">
+                        <div class="screen-title">Tone & Style Adjustment</div>
+                        
+                        <div style="padding: 20px;">
+                            <div class="element" style="background: #f3e8ff; color: #7c3aed; margin-bottom: 20px;">
+                                🎨 Tone Adjustment
+                            </div>
+                            
+                            <div class="element input" style="height: 80px; margin: 15px 0;">
+                                Original Content: "Our platform uses AI to help marketers create better campaigns..."
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0;">
+                                <div class="element" style="background: white; border: 2px solid #2563eb;">
+                                    📊 Investor-Friendly
+                                </div>
+                                <div class="element" style="background: white; border: 1px solid #d1d5db;">
+                                    🤝 Friendly
+                                </div>
+                                <div class="element" style="background: white; border: 1px solid #d1d5db;">
+                                    🎯 Persuasive
+                                </div>
+                                <div class="element" style="background: white; border: 1px solid #d1d5db;">
+                                    📝 Concise
+                                </div>
+                            </div>
+                            
+                            <div class="element card" style="text-align: left; padding: 15px;">
+                                <strong>Investor-Friendly Version:</strong><br>
+                                "Our proprietary AI platform delivers 3x ROI improvement for enterprise marketing teams, with proven scalability across $10B+ market opportunity."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Summary Generation</div>
+                    
+                    <div style="padding: 20px;">
+                        <div class="element" style="background: #ecfdf5; color: #065f46; margin-bottom: 20px;">
+                            📋 Pitch Summaries
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                            <div class="element card" style="text-align: left;">
+                                <strong>One-Liner</strong><br>
+                                <div style="font-size: 12px; color: #6b7280; margin: 5px 0;">Perfect for social media</div>
+                                <div class="element button" style="font-size: 12px; margin-top: 10px;">Generate</div>
+                            </div>
+                            
+                            <div class="element card" style="text-align: left;">
+                                <strong>Elevator Pitch</strong><br>
+                                <div style="font-size: 12px; color: #6b7280; margin: 5px 0;">30-second version</div>
+                                <div class="element button" style="font-size: 12px; margin-top: 10px;">Generate</div>
+                            </div>
+                            
+                            <div class="element card" style="text-align: left;">
+                                <strong>1-Minute Pitch</strong><br>
+                                <div style="font-size: 12px; color: #6b7280; margin: 5px 0;">Detailed summary</div>
+                                <div class="element button" style="font-size: 12px; margin-top: 10px;">Generate</div>
+                            </div>
+                        </div>
+                        
+                        <div class="element card" style="text-align: left; padding: 20px; margin-top: 20px;">
+                            <strong>Generated Elevator Pitch:</strong><br><br>
+                            "We're solving the $50B problem of inefficient marketing spend through our AI platform that automatically optimizes campaigns across channels. We've helped 200+ companies achieve 3x ROI improvement, and we're seeking $5M to scale our proven solution to enterprise markets."
+                        </div>
+                    </div>
+                    
+                    <div class="annotation">
+                        AI generates different length summaries for various use cases
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Templates Library -->
+        <div class="wireframe-section" id="templates">
+            <div class="wireframe-header">
+                <h2>6. Templates Library</h2>
+                <p>Professional pitch templates and customization</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Templates Library - Main View</div>
+                    
+                    <div class="element header">
+                        Logo | Dashboard | My Pitches | Templates | AI Assistant | [Profile]
+                    </div>
+                    
+                    <div style="padding: 30px 20px;">
+                        <div class="element" style="font-size: 18px; text-align: left; background: white; margin-bottom: 20px;">
+                            Pitch Templates<br>
+                            <span style="font-size: 14px; color: #6b7280;">Choose from our professionally crafted templates</span>
+                        </div>
+                        
+                        <!-- Filters -->
+                        <div style="display: flex; gap: 15px; margin: 20px 0;">
+                            <div class="element input" style="flex: 1;">
+                                🔍 Search templates...
+                            </div>
+                            <div class="element input" style="width: 150px;">
+                                Category ▼
+                            </div>
+                            <div class="element input" style="width: 150px;">
+                                Difficulty ▼
+                            </div>
+                        </div>
+                        
+                        <!-- Templates Grid -->
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px 0;">
+                            <div class="element card" style="text-align: left; padding: 20px;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                                    <div style="background: #dbeafe; color: #1e40af; padding: 8px; border-radius: 8px;">
+                                        🚀
+                                    </div>
+                                    <div style="display: flex; gap: 5px;">
+                                        <div style="background: #f3f4f6; padding: 2px 8px; border-radius: 12px; font-size: 11px;">Business</div>
+                                        <div style="background: #fef3c7; padding: 2px 8px; border-radius: 12px; font-size: 11px;">Intermediate</div>
+                                    </div>
+                                </div>
+                                <strong>Startup Pitch</strong><br>
+                                <div style="color: #6b7280; font-size: 12px; margin: 8px 0;">
+                                    Perfect for presenting your startup to investors and accelerators
+                                </div>
+                                <div style="margin: 15px 0;">
+                                    <div style="font-size: 12px; font-weight: 600; margin-bottom: 5px;">Includes:</div>
+                                    <div style="display: flex; gap: 4px;">
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">Problem</span>
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">Solution</span>
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">Market</span>
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">+4 more</span>
+                                    </div>
+                                </div>
+                                <div class="element button" style="font-size: 12px;">Use This Template</div>
+                            </div>
+                            
+                            <div class="element card" style="text-align: left; padding: 20px;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                                    <div style="background: #dcfce7; color: #166534; padding: 8px; border-radius: 8px;">
+                                        💼
+                                    </div>
+                                    <div style="display: flex; gap: 5px;">
+                                        <div style="background: #f3f4f6; padding: 2px 8px; border-radius: 12px; font-size: 11px;">Product</div>
+                                        <div style="background: #dcfce7; padding: 2px 8px; border-radius: 12px; font-size: 11px;">Beginner</div>
+                                    </div>
+                                </div>
+                                <strong>Product Pitch</strong><br>
+                                <div style="color: #6b7280; font-size: 12px; margin: 8px 0;">
+                                    Showcase your product features and benefits to potential customers
+                                </div>
+                                <div style="margin: 15px 0;">
+                                    <div style="font-size: 12px; font-weight: 600; margin-bottom: 5px;">Includes:</div>
+                                    <div style="display: flex; gap: 4px;">
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">Overview</span>
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">Features</span>
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">Benefits</span>
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">+3 more</span>
+                                    </div>
+                                </div>
+                                <div class="element button" style="font-size: 12px;">Use This Template</div>
+                            </div>
+                            
+                            <div class="element card" style="text-align: left; padding: 20px;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                                    <div style="background: #fef3c7; color: #92400e; padding: 8px; border-radius: 8px;">
+                                        📈
+                                    </div>
+                                    <div style="display: flex; gap: 5px;">
+                                        <div style="background: #f3f4f6; padding: 2px 8px; border-radius: 12px; font-size: 11px;">Sales</div>
+                                        <div style="background: #fef3c7; padding: 2px 8px; border-radius: 12px; font-size: 11px;">Intermediate</div>
+                                    </div>
+                                </div>
+                                <strong>Sales Pitch</strong><br>
+                                <div style="color: #6b7280; font-size: 12px; margin: 8px 0;">
+                                    Convert prospects into customers with compelling presentations
+                                </div>
+                                <div style="margin: 15px 0;">
+                                    <div style="font-size: 12px; font-weight: 600; margin-bottom: 5px;">Includes:</div>
+                                    <div style="display: flex; gap: 4px;">
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">Problem ID</span>
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">Solution</span>
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">Value Prop</span>
+                                        <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 8px; font-size: 10px;">+3 more</span>
+                                    </div>
+                                </div>
+                                <div class="element button" style="font-size: 12px;">Use This Template</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="annotation">
+                        Templates are categorized, searchable, and show preview information
+                    </div>
+                </div>
+
+                <!-- Template Preview -->
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Template Preview Modal</div>
+                    
+                    <div style="background: rgba(0,0,0,0.5); padding: 40px; text-align: center;">
+                        <div style="background: white; border-radius: 12px; padding: 30px; max-width: 600px; margin: 0 auto; text-align: left;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <strong style="font-size: 18px;">Startup Pitch Template</strong>
+                                <div style="font-size: 20px; cursor: pointer;">✕</div>
+                            </div>
+                            
+                            <div style="color: #6b7280; margin-bottom: 20px;">
+                                This template is designed for startup founders presenting to investors, VCs, and accelerators. It follows the proven structure that has helped raise over $100M in funding.
+                            </div>
+                            
+                            <div style="margin: 20px 0;">
+                                <strong>Template Structure:</strong>
+                                <div style="margin: 10px 0;">
+                                    <div style="display: flex; align-items: center; margin: 8px 0;">
+                                        <div style="width: 20px; height: 20px; background: #2563eb; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; margin-right: 10px;">1</div>
+                                        <span>Problem Statement - Define the pain point</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; margin: 8px 0;">
+                                        <div style="width: 20px; height: 20px; background: #2563eb; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; margin-right: 10px;">2</div>
+                                        <span>Solution - Your unique approach</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; margin: 8px 0;">
+                                        <div style="width: 20px; height: 20px; background: #2563eb; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; margin-right: 10px;">3</div>
+                                        <span>Market Size - TAM, SAM, SOM analysis</span>
+                                    </div>
+                                    <div style="color: #6b7280; margin-left: 30px;">+ 5 more sections</div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                                <div class="element button" style="flex: 1;">Use This Template</div>
+                                <div class="element" style="background: white; border: 1px solid #d1d5db; flex: 1; text-align: center;">
+                                    Preview Sample
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export & Sharing -->
+        <div class="wireframe-section" id="export">
+            <div class="wireframe-header">
+                <h2>7. Export & Sharing</h2>
+                <p>Multiple export formats and secure sharing options</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Export Options - Final Step</div>
+                    
+                    <div style="padding: 30px;">
+                        <div style="text-align: center; margin-bottom: 30px;">
+                            <div class="element" style="background: #dcfce7; color: #166534; display: inline-block; margin-bottom: 10px;">
+                                🎉 Your Pitch is Ready!
+                            </div>
+                            <div style="color: #6b7280;">Review your pitch and export it in your preferred format</div>
+                        </div>
+                        
+                        <!-- Tabs -->
+                        <div style="display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 30px;">
+                            <div style="padding: 10px 20px; border-bottom: 2px solid #2563eb; color: #2563eb; font-weight: 600;">
+                                Preview
+                            </div>
+                            <div style="padding: 10px 20px; color: #6b7280;">
+                                Export Options
+                            </div>
+                        </div>
+                        
+                        <!-- Preview Tab -->
+                        <div class="element card" style="text-align: left; padding: 25px; margin-bottom: 20px;">
+                            <div style="margin-bottom: 15px;">
+                                <strong style="font-size: 18px;">AI-Powered Marketing Platform</strong><br>
+                                <span style="color: #6b7280; font-size: 14px;">Revolutionizing how businesses approach digital marketing</span>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                                <div style="background: #dbeafe; color: #1e40af; padding: 4px 12px; border-radius: 12px; font-size: 12px;">Startup</div>
+                                <div style="background: #f3f4f6; color: #374151; padding: 4px 12px; border-radius: 12px; font-size: 12px;">Investors</div>
+                            </div>
+                            
+                            <div style="margin: 15px 0;">
+                                <strong style="font-size: 14px;">Problem</strong><br>
+                                <span style="color: #6b7280; font-size: 13px;">Marketing teams struggle with fragmented data across multiple platforms...</span>
+                            </div>
+                            
+                            <div style="margin: 15px 0;">
+                                <strong style="font-size: 14px;">Solution</strong><br>
+                                <span style="color: #6b7280; font-size: 13px;">Our AI-powered platform unifies marketing data and provides intelligent recommendations...</span>
+                            </div>
+                            
+                            <div style="margin: 15px 0;">
+                                <strong style="font-size: 14px;">The Ask</strong><br>
+                                <span style="color: #6b7280; font-size: 13px;">Seeking $5M Series A to scale our proven solution to enterprise markets...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Options Tab -->
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Export Options Tab</div>
+                    
+                    <div style="padding: 30px;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                            <div class="element card" style="text-align: center; padding: 30px;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">📄</div>
+                                <strong>PDF Document</strong><br>
+                                <span style="color: #6b7280; font-size: 12px; margin: 10px 0; display: block;">
+                                    Professional PDF format perfect for sharing
+                                </span>
+                                <div class="element button" style="margin-top: 15px;">
+                                    📥 Export PDF
+                                </div>
+                            </div>
+                            
+                            <div class="element card" style="text-align: center; padding: 30px;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">🔗</div>
+                                <strong>Share Link</strong><br>
+                                <span style="color: #6b7280; font-size: 12px; margin: 10px 0; display: block;">
+                                    Generate a secure link to share your pitch
+                                </span>
+                                <div class="element" style="background: white; border: 1px solid #d1d5db; margin-top: 15px;">
+                                    🔗 Create Link
+                                </div>
+                            </div>
+                            
+                            <div class="element card" style="text-align: center; padding: 30px;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">📋</div>
+                                <strong>Copy Text</strong><br>
+                                <span style="color: #6b7280; font-size: 12px; margin: 10px 0; display: block;">
+                                    Copy formatted text to clipboard
+                                </span>
+                                <div class="element" style="background: white; border: 1px solid #d1d5db; margin-top: 15px;">
+                                    📋 Copy to Clipboard
+                                </div>
+                            </div>
+                            
+                            <div class="element card" style="text-align: center; padding: 30px;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">📊</div>
+                                <strong>Presentation Slides</strong><br>
+                                <span style="color: #6b7280; font-size: 12px; margin: 10px 0; display: block;">
+                                    Generate PowerPoint presentation
+                                </span>
+                                <div class="element" style="background: #f3f4f6; color: #6b7280; margin-top: 15px;">
+                                    Coming Soon
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="annotation">
+                        Multiple export formats cater to different use cases and sharing preferences
+                    </div>
+                </div>
+
+                <!-- Share Link Modal -->
+                <div class="desktop-wireframe">
+                    <div class="screen-title">Share Link Generation</div>
+                    
+                    <div style="background: rgba(0,0,0,0.5); padding: 40px; text-align: center;">
+                        <div style="background: white; border-radius: 12px; padding: 30px; max-width: 500px; margin: 0 auto; text-align: left;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <strong style="font-size: 18px;">Share Your Pitch</strong>
+                                <div style="font-size: 20px; cursor: pointer;">✕</div>
+                            </div>
+                            
+                            <div style="margin: 20px 0;">
+                                <div style="font-weight: 600; margin-bottom: 10px;">Share Settings</div>
+                                
+                                <div style="margin: 15px 0;">
+                                    <label style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="checkbox" style="margin: 0;">
+                                        <span>Password protect this link</span>
+                                    </label>
+                                </div>
+                                
+                                <div style="margin: 15px 0;">
+                                    <label style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="checkbox" style="margin: 0;">
+                                        <span>Set expiration date</span>
+                                    </label>
+                                </div>
+                                
+                                <div style="margin: 15px 0;">
+                                    <label style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="checkbox" style="margin: 0;">
+                                        <span>Track views and engagement</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="element input" style="margin: 20px 0;">
+                                https://pitchwriter.ai/share/abc123xyz
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                                <div class="element button" style="flex: 1;">Generate Link</div>
+                                <div class="element" style="background: white; border: 1px solid #d1d5db; padding: 12px; text-align: center;">
+                                    📋
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Experience -->
+        <div class="wireframe-section" id="mobile">
+            <div class="wireframe-header">
+                <h2>8. Mobile Experience</h2>
+                <p>Responsive design for mobile pitch creation</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe-grid">
+                    <div class="mobile-wireframe">
+                        <div class="screen-title">Mobile - Dashboard</div>
+                        
+                        <div class="element header" style="display: flex; justify-content: space-between; align-items: center; padding: 15px;">
+                            <div>✨ Pitch Writer AI</div>
+                            <div>☰</div>
+                        </div>
+                        
+                        <div style="padding: 20px;">
+                            <div class="element" style="text-align: left; background: white; margin-bottom: 20px;">
+                                Welcome back! 👋<br>
+                                <span style="font-size: 12px; color: #6b7280;">Ready to create?</span>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px 0;">
+                                <div class="element card" style="padding: 15px; text-align: center;">
+                                    📄<br><strong>12</strong><br>
+                                    <span style="font-size: 11px;">Total Pitches</span>
+                                </div>
+                                <div class="element card" style="padding: 15px; text-align: center;">
+                                    📈<br><strong>78%</strong><br>
+                                    <span style="font-size: 11px;">Success Rate</span>
+                                </div>
+                            </div>
+                            
+                            <div class="element button" style="margin: 20px 0;">
+                                ➕ Create New Pitch
+                            </div>
+                            
+                            <div class="element" style="text-align: left; background: white; font-weight: 600; margin: 20px 0;">
+                                Recent Pitches
+                            </div>
+                            
+                            <div class="element card" style="text-align: left; padding: 15px;">
+                                <strong>AI Marketing Platform</strong><br>
+                                <span style="font-size: 11px; color: #6b7280;">Updated 2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-wireframe">
+                        <div class="screen-title">Mobile - Pitch Builder</div>
+                        
+                        <div class="element header" style="display: flex; justify-content: space-between; align-items: center; padding: 15px;">
+                            <div>← Back</div>
+                            <div>Step 2 of 8</div>
+                            <div>💾</div>
+                        </div>
+                        
+                        <div style="background: #e5e7eb; height: 4px; margin: 0 20px;">
+                            <div style="background: #2563eb; height: 4px; width: 25%;"></div>
+                        </div>
+                        
+                        <div style="padding: 20px;">
+                            <div class="element" style="text-align: left; background: white; margin-bottom: 20px;">
+                                <strong>Problem Statement</strong><br>
+                                <span style="font-size: 12px; color: #6b7280;">Define the problem you're solving</span>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <span style="font-weight: 600; font-size: 14px;">Problem Statement *</span>
+                                <div class="element button" style="padding: 6px 12px; font-size: 11px;">
+                                    🪄 AI
+                                </div>
+                            </div>
+                            
+                            <div class="element input" style="height: 120px; margin: 15px 0;">
+                                Describe the problem...
+                            </div>
+                            
+                            <div class="element" style="background: #fef3c7; color: #92400e; text-align: left; font-size: 11px; margin: 15px 0;">
+                                💡 Focus on relatable problems with quantified impact
+                            </div>
+                        </div>
+                        
+                        <div style="position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e5e7eb; padding: 15px;">
+                            <div style="display: flex; justify-content: space-between; max-width: 375px; margin: 0 auto;">
+                                <div class="element" style="background: white; border: 1px solid #d1d5db; padding: 10px 20px;">
+                                    ← Previous
+                                </div>
+                                <div class="element button" style="padding: 10px 20px;">
+                                    Next →
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-wireframe">
+                        <div class="screen-title">Mobile - AI Assistant</div>
+                        
+                        <div class="element header" style="display: flex; justify-content: space-between; align-items: center; padding: 15px;">
+                            <div>← Back</div>
+                            <div>AI Assistant</div>
+                            <div>⚙️</div>
+                        </div>
+                        
+                        <div style="padding: 20px;">
+                            <div class="element" style="background: #dbeafe; color: #1e40af; margin-bottom: 20px;">
+                                🤖 AI Content Generator
+                            </div>
+                            
+                            <div class="element input" style="height: 80px; margin: 15px 0;">
+                                What would you like me to help you write?
+                            </div>
+                            
+                            <div class="element button" style="margin: 15px 0;">
+                                Generate Content
+                            </div>
+                            
+                            <div style="margin: 20px 0;">
+                                <div style="font-weight: 600; margin-bottom: 10px; font-size: 14px;">Quick Actions</div>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                                    <div class="element" style="background: white; border: 1px solid #d1d5db; padding: 10px; font-size: 12px;">
+                                        Problem Statement
+                                    </div>
+                                    <div class="element" style="background: white; border: 1px solid #d1d5db; padding: 10px; font-size: 12px;">
+                                        Solution
+                                    </div>
+                                    <div class="element" style="background: white; border: 1px solid #d1d5db; padding: 10px; font-size: 12px;">
+                                        Market Size
+                                    </div>
+                                    <div class="element" style="background: white; border: 1px solid #d1d5db; padding: 10px; font-size: 12px;">
+                                        Elevator Pitch
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="annotation">
+                    Mobile design prioritizes touch-friendly interfaces, simplified navigation, and essential features
+                </div>
+            </div>
+        </div>
+
+        <!-- User Flow Diagram -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">
+                <h2>9. User Flow Overview</h2>
+                <p>Complete user journey from landing to pitch export</p>
+            </div>
+            <div class="wireframe-content">
+                <div style="text-align: center; padding: 20px;">
+                    <div class="element" style="background: #dbeafe; color: #1e40af; display: inline-block; margin: 10px;">
+                        🌐 Landing Page
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="element" style="background: #fef3c7; color: #92400e; display: inline-block; margin: 10px;">
+                        📧 Magic Link Auth
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="element" style="background: #dcfce7; color: #166534; display: inline-block; margin: 10px;">
+                        📊 Dashboard
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
+                        <div class="element" style="background: #f3e8ff; color: #7c3aed;">
+                            📄 Choose Template
+                        </div>
+                        <div style="margin-top: 20px;">OR</div>
+                        <div class="element" style="background: #f3e8ff; color: #7c3aed;">
+                            ➕ Start from Scratch
+                        </div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="element" style="background: #fecaca; color: #dc2626; display: inline-block; margin: 10px;">
+                        🔧 8-Step Pitch Builder
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="element" style="background: #fed7d7; color: #c53030; display: inline-block; margin: 10px;">
+                        🤖 AI Enhancement
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="element" style="background: #bee3f8; color: #2b6cb0; display: inline-block; margin: 10px;">
+                        👀 Review & Preview
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
+                        <div class="element" style="background: #c6f6d5; color: #2f855a;">
+                            📄 Export PDF
+                        </div>
+                        <div class="element" style="background: #c6f6d5; color: #2f855a;">
+                            🔗 Share Link
+                        </div>
+                        <div class="element" style="background: #c6f6d5; color: #2f855a;">
+                            📋 Copy Text
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer style="text-align: center; margin-top: 60px; padding: 40px; background: #f8fafc; border-radius: 12px;">
+            <h3>Wireframes Summary</h3>
+            <p style="color: #6b7280; margin: 15px 0;">
+                These wireframes represent the complete user experience for Pitch Writer AI, 
+                covering all major features and user flows across desktop and mobile platforms.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 30px 0;">
+                <div class="element card">
+                    <strong>8 Core Screens</strong><br>
+                    <span style="font-size: 12px;">Complete user journey</span>
+                </div>
+                <div class="element card">
+                    <strong>Mobile Responsive</strong><br>
+                    <span style="font-size: 12px;">Touch-optimized design</span>
+                </div>
+                <div class="element card">
+                    <strong>AI Integration</strong><br>
+                    <span style="font-size: 12px;">Seamless AI assistance</span>
+                </div>
+                <div class="element card">
+                    <strong>Export Options</strong><br>
+                    <span style="font-size: 12px;">Multiple sharing formats</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
