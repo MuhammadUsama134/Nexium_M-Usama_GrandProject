@@ -8,7 +8,7 @@ interface PitchData {
   audience?: string
   problem?: string
   solution?: string
-  [key: string]: string |undefined
+  [key: string]: any
 
 }
 
